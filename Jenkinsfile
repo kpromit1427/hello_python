@@ -17,12 +17,8 @@ pipeline {
 
         stage('Install venv if missing') {
             steps {
-                sh '''
-                if ! python3 -m venv --help > /dev/null 2>&1; then
-                sudo apt update
-                sudo apt install -y python3-venv
-                fi
-                '''
+                sh 'sudo apt update'
+                sh 'sudo apt install -y python3-venv'
             }
         }
 
