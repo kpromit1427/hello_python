@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.12' // Official Python image from Docker Hub
+            image 'python:3.12-bullseye'// Official Python image from Docker Hub
         }
     }
 
