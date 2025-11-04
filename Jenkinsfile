@@ -1,8 +1,10 @@
 pipeline {
     agent {
-        docker {
-            image 'python:3.12-bullseye'// Official Python image from Docker Hub
+        dockerfile {
+            filename 'Dockerfile'
+            dir '.' // assuming Dockerfile is in repo root
         }
+
     }
 
     environment {
