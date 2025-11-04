@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.12' // Official Python image from Docker Hub
+        }
+    }
 
     environment {
         EC2_USER = 'ec2-user' // or 'ubuntu'
@@ -15,18 +19,9 @@ pipeline {
             }
         }
 
-        stage('Install venv if missing') {
-            steps {
-                sh '''
-                    apt update
-                    apt install -y python3.12-venv
-                    '''
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                sh 'python3 -m venv venv'
+                sh 'python -m venv venv'
                 sh './venv/bin/pip install -r requirements.txt'
             }
         }
