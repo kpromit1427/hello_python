@@ -18,8 +18,8 @@ pipeline {
         stage('Install venv if missing') {
             steps {
                 sh '''
-                    sudo apt update
-                    sudo apt install -y python3.12-venv
+                    apt update
+                    apt install -y python3.12-venv
                     '''
             }
         }
