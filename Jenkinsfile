@@ -8,8 +8,8 @@ pipeline {
     }
 
     environment {
-        EC2_USER = 'ec2-user' // or 'ubuntu'
-        EC2_HOST = 'your.ec2.ip.address'
+        EC2_USER = 'ubuntu' // or 'ubuntu'
+        EC2_HOST = '3.109.56.226'
         SSH_KEY_ID = 'ec2-ssh-key' // Jenkins credential ID
         APP_DIR = '/home/ec2-user/flaskapp'
     }
