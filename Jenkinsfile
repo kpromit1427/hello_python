@@ -17,9 +17,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/kpromit1427/hello_python.git'
+                checkout scm
             }
-        }
+    }
 
         stage('Install Dependencies') {
             steps {
