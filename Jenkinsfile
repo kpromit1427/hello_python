@@ -50,7 +50,7 @@ pipeline {
                             pkill gunicorn || true &&
                             nohup gunicorn -b 0.0.0.0:5000 app:app > gunicorn.log 2>&1 &
                         "
-'''
+                    '''
                 }
             }
         }
