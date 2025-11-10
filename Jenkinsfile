@@ -37,20 +37,20 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 sshagent (credentials: [env.SSH_KEY_ID]) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} '
-                            mkdir -p ${APP_DIR}
-                        '
+                    sh '''
+                        eval $(ssh-agent -s)
+                        ssh-add ${SSH_KEY_PATH}
+                        ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} "mkdir -p ${APP_DIR}"
                         scp -r * ${EC2_USER}@${EC2_HOST}:${APP_DIR}/
-                        ssh ${EC2_USER}@${EC2_HOST} '
+                        ssh ${EC2_USER}@${EC2_HOST} "
                             cd ${APP_DIR} &&
                             python3 -m venv venv &&
                             source venv/bin/activate &&
                             pip install -r requirements.txt &&
                             pkill gunicorn || true &&
                             nohup gunicorn -b 0.0.0.0:5000 app:app > gunicorn.log 2>&1 &
-                        '
-                    """
+                        "
+'''
                 }
             }
         }
