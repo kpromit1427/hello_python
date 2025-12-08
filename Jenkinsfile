@@ -1,12 +1,5 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile'
-            dir '.' // assuming Dockerfile is in repo root
-        }
-
-    }
-
+    agent any
     environment {
         EC2_USER = 'ubuntu'
         EC2_HOST = '52.66.253.229'
